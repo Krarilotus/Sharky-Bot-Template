@@ -45,8 +45,9 @@ namespace StarCraft2Bot
                 startupPort += 5;
 
             var map = maps.GetRandomEntry();
-            
-            return gameConnection.RunSinglePlayer(exampleBot, $"{Enum.GetName(map)}AIE.SC2Map", Race.Terran, Race.Terran, Difficulty.CheatInsane, AIBuild.RandomBuild, startupPort, realTime: false);
+
+            return gameConnection.RunSinglePlayer(exampleBot, $"{Enum.GetName(map)}AIE.SC2Map", Race.Terran, Race.Terran, 
+                Difficulty.CheatInsane, AIBuild.RandomBuild, startupPort, realTime: false);
         }
 
         static void Main(string[] args)
