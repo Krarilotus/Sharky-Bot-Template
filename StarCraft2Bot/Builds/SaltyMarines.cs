@@ -13,6 +13,7 @@ using Sharky.Builds.QuickBuilds;
 using System.Dynamic;
 using Sharky.MicroTasks.Attack;
 using Sharky.Managers;
+using StarCraft2Bot.Bot;
 
 namespace StarCraft2Bot.Builds
 {
@@ -24,7 +25,7 @@ namespace StarCraft2Bot.Builds
 
         private Queue<BuildAction>? BuildOrder { get; set; }
 
-        public SaltyMarines(DefaultSharkyBot defaultSharkyBot, IIndividualMicroController scvMicroController) : base(defaultSharkyBot)
+        public SaltyMarines(BaseBot defaultSharkyBot) : base(defaultSharkyBot)
         {
             defaultSharkyBot.MicroController = new AdvancedMicroController(defaultSharkyBot);
             var advancedAttackTask = new AdvancedAttackTask(defaultSharkyBot, new EnemyCleanupService(defaultSharkyBot.MicroController,

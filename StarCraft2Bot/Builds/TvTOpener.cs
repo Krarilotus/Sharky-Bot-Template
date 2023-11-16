@@ -4,6 +4,7 @@ using Sharky.DefaultBot;
 using Sharky.Managers;
 using Sharky.MicroControllers;
 using Sharky.MicroTasks;
+using StarCraft2Bot.Bot;
 using Sharky.MicroTasks.Attack;
 using Sharky.Proxy;
 using StarCraft2Bot.Builds.Base;
@@ -16,7 +17,7 @@ namespace StarCraft2Bot.Builds
     {
         private Queue<BuildAction>? BuildOrder { get; set; }
 
-        public TvTOpener(DefaultSharkyBot defaultSharkyBot, IIndividualMicroController scvMicroController) : base(defaultSharkyBot)
+        public TvTOpener(BaseBot defaultSharkyBot) : base(defaultSharkyBot)
         {
             defaultSharkyBot.MicroController = new AdvancedMicroController(defaultSharkyBot);
             var advancedAttackTask = new AdvancedAttackTask(defaultSharkyBot, new EnemyCleanupService(defaultSharkyBot.MicroController,

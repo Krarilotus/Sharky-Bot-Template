@@ -8,18 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Builds\BuildServices\**" />
-    <EmbeddedResource Remove="Builds\BuildServices\**" />
-    <None Remove="Builds\BuildServices\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Builds\BansheesAndMarines - Copy.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Sharky\S2ClientProtocol\S2ClientProtocol.csproj" />
     <ProjectReference Include="..\Sharky\Sharky\Sharky.csproj" />
+    <ProjectReference Include="..\StarCraft2Bot.Database\StarCraft2Bot.Database.csproj" />
   </ItemGroup>
 
 </Project>
