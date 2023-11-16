@@ -12,6 +12,7 @@ using StarCraft2Bot.Builds.Base.Condition;
 using Sharky.Builds.QuickBuilds;
 using System.Dynamic;
 using Sharky.MicroTasks.Attack;
+using Sharky.Managers;
 
 namespace StarCraft2Bot.Builds
 {
@@ -26,8 +27,14 @@ namespace StarCraft2Bot.Builds
         public SaltyMarines(DefaultSharkyBot defaultSharkyBot, IIndividualMicroController scvMicroController) : base(defaultSharkyBot)
         {
             defaultSharkyBot.MicroController = new AdvancedMicroController(defaultSharkyBot);
-            var advancedAttackTask = new AdvancedAttackTask(defaultSharkyBot, new EnemyCleanupService(defaultSharkyBot.MicroController, defaultSharkyBot.DamageService), new List<UnitTypes> { UnitTypes.TERRAN_MARINE }, 100f, true);
+            var advancedAttackTask = new AdvancedAttackTask(defaultSharkyBot, new EnemyCleanupService(defaultSharkyBot.MicroController,
+                defaultSharkyBot.DamageService), new List<UnitTypes> { UnitTypes.TERRAN_MARINE }, 1f, true);
             defaultSharkyBot.MicroTaskData[typeof(AttackTask).Name] = advancedAttackTask;
+            var advancedAttackService = new AdvancedAttackService(defaultSharkyBot, advancedAttackTask);
+            var advancedAttackDataManager = new AdvancedAttackDataManager(defaultSharkyBot, advancedAttackService, advancedAttackTask);
+            defaultSharkyBot.AttackDataManager = advancedAttackDataManager;
+            defaultSharkyBot.Managers.RemoveAll(m => m.GetType() == typeof(AttackDataManager));
+            defaultSharkyBot.Managers.Add(advancedAttackDataManager);
         }
 
         public override void StartBuild(int frame)
@@ -40,6 +47,15 @@ namespace StarCraft2Bot.Builds
             BuildOptions.StrictWorkerCount = false;
             MicroTaskData[typeof(WorkerScoutTask).Name].Enable();
             MicroTaskData[typeof(AttackTask).Name].Enable();
+
+            AttackData.CustomAttackFunction = false;
+            AttackData.UseAttackDataManager = true;
+            AttackData.RequireMaxOut = false;
+            AttackData.AttackWhenMaxedOut = true;
+            AttackData.RequireBank = false;
+            AttackData.AttackTrigger = 80f;
+            AttackData.RetreatTrigger = 15f;
+            AttackData.Attacking = false;
 
             BuildOrder = new Queue<BuildAction>();
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(15, MacroData), new ProductionStructureDesire(UnitTypes.TERRAN_BARRACKS, 1, MacroData)));
@@ -71,17 +87,22 @@ namespace StarCraft2Bot.Builds
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(45, MacroData), new ProductionStructureDesire(UnitTypes.TERRAN_STARPORT, 1, MacroData)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(48, MacroData), new AddonStructureDesire(UnitTypes.TERRAN_STARPORTREACTOR, 1, MacroData)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(47, MacroData), new AddonStructureDesire(UnitTypes.TERRAN_BARRACKSREACTOR, 3, MacroData)));
-            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(40, MacroData), new UnitDesire(UnitTypes.TERRAN_MEDIVAC, 10, MacroData.DesiredUnitCounts)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(40, MacroData), new UnitDesire(UnitTypes.TERRAN_MEDIVAC, 5, MacroData.DesiredUnitCounts)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(45, MacroData), new UnitDesire(UnitTypes.TERRAN_SIEGETANK, 6, MacroData.DesiredUnitCounts)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(48, MacroData), new ProductionStructureDesire(UnitTypes.TERRAN_FACTORY, 2, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(48, MacroData), new AddonStructureDesire(UnitTypes.TERRAN_FACTORYTECHLAB, 2, MacroData)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(50, MacroData), new UnitUpgradeDesire(Upgrades.TERRANINFANTRYARMORSLEVEL2, MacroData)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(50, MacroData), new UnitUpgradeDesire(Upgrades.TERRANINFANTRYWEAPONSLEVEL2, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(60, MacroData), new ProductionStructureDesire(UnitTypes.TERRAN_COMMANDCENTER, 4, MacroData)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(70, MacroData), new UnitUpgradeDesire(Upgrades.TERRANINFANTRYWEAPONSLEVEL3, MacroData)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(70, MacroData), new UnitUpgradeDesire(Upgrades.TERRANINFANTRYARMORSLEVEL3, MacroData)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(50, MacroData), new MorphDesire(UnitTypes.TERRAN_PLANETARYFORTRESS, 1, MacroData)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(70, MacroData), new ProductionStructureDesire(UnitTypes.TERRAN_BARRACKS, 8, MacroData)));
-            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(80, MacroData), new ProductionStructureDesire(UnitTypes.TERRAN_COMMANDCENTER, 4, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(18, MacroData), new UnitDesire(UnitTypes.TERRAN_MARINE, 66, MacroData.DesiredUnitCounts)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(80, MacroData), new UnitDesire(UnitTypes.TERRAN_MEDIVAC, 8, MacroData.DesiredUnitCounts)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(80, MacroData), new UnitDesire(UnitTypes.TERRAN_SIEGETANK,10, MacroData.DesiredUnitCounts)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(100, MacroData), new AddonStructureDesire(UnitTypes.TERRAN_BARRACKSREACTOR, 6, MacroData)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(50, MacroData), new MorphDesire(UnitTypes.TERRAN_ORBITALCOMMAND, 3, MacroData)));
-            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(80, MacroData), new UnitDesire(UnitTypes.TERRAN_SIEGETANK, 6, MacroData.DesiredUnitCounts)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(150, MacroData), new ProductionStructureDesire(UnitTypes.TERRAN_COMMANDCENTER, 6, MacroData)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(150, MacroData), new MorphDesire(UnitTypes.TERRAN_PLANETARYFORTRESS, 3, MacroData)));
         }
