@@ -1,0 +1,54 @@
+Bewertung der Stellung
+- Informationssicherheit bewerten: - David
+	- Differenz:
+		Projektion des Einkommens und bisher geschätz produzierte Mineralien und Gas 
+		real gescoutete Einheiten
+	- Scoutingscore: 
+	    - timebased Information decay
+	- Informationsrelevanz abhängig vom Spielstadium (-> Vegleich Datenbank)
+	- 
+
+
+Bewertung für Züge
+- (Gain - Kosten)
+- alternativ: Stellungsbewertung nach meinem Zug (erwartet)
+- was passiert bei einem Kampf
+
+- Differenz zwischen den Preconditions für einen strategischen Move
+und dem aktuellen Stand
+
+-> Aulesen von allen wichtigen Werten:
+- Ressourcen: Mineralien, Gas, Supply und Zeit
+- ArmySize
+- Tech (Anzahl Produktionsgebäude und Upgrades)
+
+- Gain: Aus den gespielten Spielen oder entsprechend Heuristik zu berechnen - Ansgar
+
+
+Beispiele für Züge:
+- Counteractions für bestimmte Einheit
+  - vs. Cloaked
+	- z.B. Raven vs Cloaked
+	- Scan vs Cloaked
+	- Raketenturm vs Cloacked
+  - vs. mass marine
+    - Splashdmg Tanks
+	- anti Armor shield missile
+- Technologie Entscheidungen
+  - Produktionsgebäude hinzufügen
+	- Barracken, Fabrik Starport
+	- Upgradegebäude (Fusionskern, Waffenlager, Engineeringbay, Ghostacademy)
+  - Upgradeentscheidungen
+  - Basis umpositionierung
+  - Addons tauschen
+- Kampfentscheidungen
+  - Harass
+  - Angreifen / Verteidigen
+	- Positionierung auf der Karte
+	- Verteidungsstellung bauen (Bunker, Siege tanks siegen etc.)
+  - (Aufgeben)
+- Transition in andere Einheitenkombinationen
+- Scouting
+  - Scan 
+  - Einheiten auf die karte schicken
+	-> abhängig von vorhandenen Einheiten und Spielstand

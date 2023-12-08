@@ -99,13 +99,44 @@ namespace StarCraft2Bot.Builds
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(70, MacroData), new UnitUpgradeDesire(Upgrades.TERRANINFANTRYARMORSLEVEL3, MacroData)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(50, MacroData), new MorphDesire(UnitTypes.TERRAN_PLANETARYFORTRESS, 1, MacroData)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(70, MacroData), new ProductionStructureDesire(UnitTypes.TERRAN_BARRACKS, 8, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(60, MacroData), new ProductionStructureDesire(UnitTypes.TERRAN_COMMANDCENTER, 5, MacroData)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(18, MacroData), new UnitDesire(UnitTypes.TERRAN_MARINE, 66, MacroData.DesiredUnitCounts)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(80, MacroData), new UnitDesire(UnitTypes.TERRAN_MEDIVAC, 8, MacroData.DesiredUnitCounts)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(80, MacroData), new UnitDesire(UnitTypes.TERRAN_SIEGETANK,10, MacroData.DesiredUnitCounts)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(50, MacroData), new UnitUpgradeDesire(Upgrades.TERRANVEHICLEANDSHIPARMORSLEVEL1, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(50, MacroData), new UnitUpgradeDesire(Upgrades.TERRANVEHICLEWEAPONSLEVEL1, MacroData)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(100, MacroData), new AddonStructureDesire(UnitTypes.TERRAN_BARRACKSREACTOR, 6, MacroData)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(50, MacroData), new MorphDesire(UnitTypes.TERRAN_ORBITALCOMMAND, 3, MacroData)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(150, MacroData), new ProductionStructureDesire(UnitTypes.TERRAN_COMMANDCENTER, 6, MacroData)));
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(150, MacroData), new MorphDesire(UnitTypes.TERRAN_PLANETARYFORTRESS, 3, MacroData)));
+
+            // Endgame
+            BuildOrder.Enqueue(new BuildAction(new MineralCondition(1400, MacroData), new GasBuildingCountDesire(7, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(150, MacroData), new UnitDesire(UnitTypes.TERRAN_MARINE, 60, MacroData.DesiredUnitCounts)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(150, MacroData), new ProductionStructureDesire(UnitTypes.TERRAN_FACTORY, 3, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(150, MacroData), new AddonStructureDesire(UnitTypes.TERRAN_FACTORYTECHLAB, 3, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(150, MacroData), new UnitDesire(UnitTypes.TERRAN_SIEGETANK, 14, MacroData.DesiredUnitCounts)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(150, MacroData), new UnitDesire(UnitTypes.TERRAN_MEDIVAC, 8, MacroData.DesiredUnitCounts)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(150, MacroData), new UnitDesire(UnitTypes.TERRAN_VIKINGFIGHTER, 10, MacroData.DesiredUnitCounts)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(150, MacroData), new UnitUpgradeDesire(Upgrades.TERRANSHIPWEAPONSLEVEL1, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(150, MacroData), new ProductionStructureDesire(UnitTypes.TERRAN_COMMANDCENTER, 7, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(50, MacroData), new MorphDesire(UnitTypes.TERRAN_ORBITALCOMMAND, 4, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(150, MacroData), new UnitUpgradeDesire(Upgrades.TERRANVEHICLEWEAPONSLEVEL2, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(150, MacroData), new UnitUpgradeDesire(Upgrades.TERRANVEHICLEANDSHIPARMORSLEVEL2, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new MineralCondition(1400, MacroData), new GasBuildingCountDesire(10, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(180, MacroData), new TechStructureDesire(UnitTypes.TERRAN_GHOSTACADEMY, 2, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(150, MacroData), new UnitDesire(UnitTypes.TERRAN_MARINE, 54, MacroData.DesiredUnitCounts)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(150, MacroData), new UnitDesire(UnitTypes.TERRAN_VIKINGFIGHTER, 7, MacroData.DesiredUnitCounts)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(180, MacroData), new UnitDesire(UnitTypes.TERRAN_GHOST, 8, MacroData.DesiredUnitCounts)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(180, MacroData), new UnitUpgradeDesire(Upgrades.PERSONALCLOAKING, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(180, MacroData), new UnitDesire(UnitTypes.TERRAN_NUKE, 2, MacroData.DesiredUnitCounts)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(180, MacroData), new UnitUpgradeDesire(Upgrades.TERRANSHIPWEAPONSLEVEL2, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(180, MacroData), new UnitUpgradeDesire(Upgrades.TERRANVEHICLEANDSHIPARMORSLEVEL3, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(180, MacroData), new ProductionStructureDesire(UnitTypes.TERRAN_COMMANDCENTER, 9, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(180, MacroData), new MorphDesire(UnitTypes.TERRAN_ORBITALCOMMAND, 5, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(180, MacroData), new MorphDesire(UnitTypes.TERRAN_PLANETARYFORTRESS, 4, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(180, MacroData), new TechStructureDesire(UnitTypes.TERRAN_ARMORY, 1, MacroData)));
+            BuildOrder.Enqueue(new BuildAction(new MineralCondition(1400, MacroData), new GasBuildingCountDesire(13, MacroData)));
         }
 
         private int FrameFromTime(int minutes, int seconds)
